@@ -1,5 +1,5 @@
-﻿using CourseRegistrationApp.Models.ViewModels;
-using CourseRegistrationApp.Models;
+﻿using CourseRegistrationApp.Models;
+using CourseRegistrationApp.Models.ViewModels;
 
 namespace CourseRegistrationApp.Services.Interfaces {
     public interface ICourseService {

@@ -1,8 +1,8 @@
 ﻿using CourseRegistrationApp.Data.Infrastructure;
-using CourseRegistrationApp.Models.ViewModels;
 using CourseRegistrationApp.Models;
-using Microsoft.EntityFrameworkCore;
+using CourseRegistrationApp.Models.ViewModels;
 using CourseRegistrationApp.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace CourseRegistrationApp.Services {
     public class CourseService : ICourseService {
@@ -13,7 +13,7 @@ namespace CourseRegistrationApp.Services {
         }
 
         public async Task CreateAsync(CourseVIewModel course) {
-            var newCourse = new Course {Name = course.Name, CreditHours = course.CreditHours };
+            var newCourse = new Course { Name = course.Name, CreditHours = course.CreditHours };
             _context.Courses.Add(newCourse);
             await _context.SaveChangesAsync();
         }
