@@ -1,0 +1,22 @@
+﻿@model CourseRegistrationApp.Models.ViewModels.StudenDashboardViewModel
+
+<h2>Welcome, @Model.FirstName</h2>
+
+<h3>Your Enrolled Courses</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Enrolled On</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model.EnrolledCourses) {
+            <tr>
+                <td>@course.Name</td>
+                <td>@course.CreditHours</td>
+            </tr>
+        }
+    </tbody>
+</table>

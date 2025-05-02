@@ -41,6 +41,8 @@ builder.Services.ConfigureApplicationCookie(options => {
 //builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
 
 builder.Services.AddControllersWithViews();
 
@@ -60,7 +62,7 @@ using (var scope = app.Services.CreateScope()) {
     var admin = await userManager.FindByNameAsync("Admin");
     if (admin == null) {
         var newAdmin = new Student {FirstName = "Admin", LastName="Admin", Email = "admin@admin.com", UserName = "admin@admin.com" };
-        var result = await userManager.CreateAsync(newAdmin, "admin123");
+        var result = await userManager.CreateAsync(newAdmin, "Admin123");
         if (result.Succeeded)
             await userManager.AddToRoleAsync(newAdmin, "Admin");
         }

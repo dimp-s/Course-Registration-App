@@ -1,4 +1,48 @@
-﻿//using System.Runtime.InteropServices;
+﻿
+using CourseRegistrationApp.Data.Infrastructure;
+using CourseRegistrationApp.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
+
+public class StudentService : IStudentService {
+    private readonly ApplicationDbContext _context;
+
+    public StudentService(ApplicationDbContext context) {
+        _context = context;
+    }
+
+    public async Task<StudenDashboardViewModel> GetDashboardDataAsync(string studentId) {
+        var student = await _context.Users
+            .Include(s => s.Enrollments)
+                .ThenInclude(e => e.Course)
+            .FirstOrDefaultAsync(s => s.Id == studentId);
+
+        if (student == null) return null;
+
+        return new StudenDashboardViewModel {
+            FirstName = student.FirstName,
+            LastName = student.LastName,
+            EnrolledCourses = student.Enrollments.Select(e => new StudenDashboardViewModel.CourseInfo {
+                Name = e.Course.Name,
+                CreditHours = e.Course.CreditHours,
+                EnrolledOn = e.EnrolledOn
+            }).ToList()
+        };
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//using System.Runtime.InteropServices;
 //using CourseRegistrationApp.Data.Infrastructure;
 //using CourseRegistrationApp.Models;
 //using CourseRegistrationApp.Models.ViewModels;

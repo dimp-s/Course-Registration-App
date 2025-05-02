@@ -1,0 +1,38 @@
+﻿@model List<CourseRegistrationApp.Models.ViewModels.EnrollmentViewModel>
+
+<h2>Available Courses</h2>
+
+@if (TempData["Error"] != null) {
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model) {
+            <tr>
+                <td>@course.CourseName</td>
+                <td>@course.CreditHours</td>
+                <td>@(course.IsEnrolled ? "Enrolled" : "Not Enrolled")</td>
+                <td>
+                    @if (!course.IsEnrolled) {
+                        <form asp-action="Enroll" method="post">
+                            <input type="hidden" name="courseId" value="@course.CourseId" />
+                            <button type="submit" class="btn btn-sm btn-primary">Enroll</button>
+                        </form>
+                    }
+                    else {
+                        <span class="text-success">✔</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
