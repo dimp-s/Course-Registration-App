@@ -2,7 +2,7 @@
     public class StudenDashboardViewModel {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
+        public string ProfileImage { get; set; } 
         public List<CourseInfo> EnrolledCourses { get; set; }
 
         public class CourseInfo {

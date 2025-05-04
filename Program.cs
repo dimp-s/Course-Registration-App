@@ -61,7 +61,7 @@ using (var scope = app.Services.CreateScope()) {
     }
     var admin = await userManager.FindByNameAsync("Admin");
     if (admin == null) {
-        var newAdmin = new Student {FirstName = "Admin", LastName="Admin", Email = "admin@admin.com", UserName = "admin@admin.com" };
+        var newAdmin = new Student {FirstName = "Admin", LastName="Admin", Email = "admin@admin.com", UserName = "admin@admin.com", ProfileImage = "images/default-avatar.png" };
         var result = await userManager.CreateAsync(newAdmin, "Admin123");
         if (result.Succeeded)
             await userManager.AddToRoleAsync(newAdmin, "Admin");

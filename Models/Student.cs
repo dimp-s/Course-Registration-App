@@ -9,6 +9,7 @@ namespace CourseRegistrationApp.Models {
         public required string LastName {
             get; set;
         }
+        public string ProfileImage { get; set; }
         public virtual ICollection<Enrollment> Enrollments { get; set; }
 
     }

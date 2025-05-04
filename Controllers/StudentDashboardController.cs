@@ -23,5 +23,14 @@ namespace CourseRegistrationApp.Controllers {
 
             return View(dashboardData);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadProfileImage(IFormFile profileImage) {
+            var student = await _userManager.GetUserAsync(User);
+            if (student == null) return Unauthorized();
+            await _studentService.UploadProfilePhotoAsync(student.Id, profileImage);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

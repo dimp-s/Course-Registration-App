@@ -27,7 +27,7 @@ namespace CourseRegistrationApp.Services {
         }
 
         public async Task<IdentityResult> RegisterUserAsync(RegisterViewModel model) {
-            var user = new Student { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+            var user = new Student { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, ProfileImage = "images/default-avatar.png"};
             var result = await _userManager.CreateAsync(user, model.Password);
             if(result.Succeeded)
                 await _userManager.AddToRoleAsync(user, "Student");
